@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Trin 1: Angiv dansk sprog og UTF-8, så æ, ø og å vises korrekt. -->
+<html lang="da">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Erstat titlen med navnet på dit eget projekt. -->
+    <title>A list of cars</title>
+</head>
+<body>
+    <!-- Trin 2: Erstat overskriften og kolonneoverskrifterne til dit eget emne. -->
+    <h1>Car list</h1>
+    <form method="POST" action="{{ url_for('frontpage') }}">
+        <label for="fib_index_input">Type a car name:</label>
+        <input type="word" id="search_term" name="search_term" min="0" required>
+        <button type="submit">Enter</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr><th>Models</th><th>Year</th></tr>
+        </thead>
+        <tbody>
+            {# Trin 3: Flask sender books fra app.py. Løkken viser én række pr. bog. #}
+            {% for car in cars %}
+            <tr>
+                {# Erstat title og author med dine feltnavne fra create-db.py. #}
+                <td>{{ car['model'] }}</td>
+                <td>{{ car['year'] }}</td>
+                
+            </tr>
+            {% else %}
+            {# Denne besked vises, hvis tabellen er oprettet, men endnu er tom. #}
+            <tr><td colspan="2">Currently there are no cars to see here. Have not been registered yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
